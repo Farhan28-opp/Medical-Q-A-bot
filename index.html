@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MedAI — Medical Q&amp;A Assistant</title>
+  <meta name="description" content="MedAI is an AI-powered medical knowledge assistant that answers health questions using a document-grounded knowledge base and cites its sources. Educational information only — not a substitute for professional medical care." />
+  <meta name="theme-color" content="#0B5D4A" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="MedAI — Medical Q&A Assistant" />
+  <meta property="og:description" content="Ask medical questions and get source-aware, AI-generated educational answers grounded in a curated medical knowledge base." />
+  <meta property="og:type" content="website" />
+
+  <!-- External resources: fonts + icons only -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lucide-static/0.469.0/font/lucide.min.css" />
+
+  <!-- Stylesheet to be added later -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Skip link for accessibility -->
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- =========================================================
+       NAVIGATION
+  ========================================================== -->
+  <header id="navbar" class="navbar">
+    <nav class="nav container" aria-label="Primary">
+      <a class="nav-brand" href="#hero" aria-label="MedAI home">
+        <span class="brand-mark" aria-hidden="true">
+          <i class="lucide lucide-activity"></i>
+        </span>
+        <span class="brand-name">MedAI</span>
+      </a>
+
+      <ul id="navLinks" class="nav-links">
+        <li><a href="#hero" class="nav-link">Home</a></li>
+        <li><a href="#features" class="nav-link">Features</a></li>
+        <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button id="themeToggle" class="icon-button" type="button" aria-label="Toggle color theme" aria-pressed="false">
+          <i class="lucide lucide-sun-moon" aria-hidden="true"></i>
+        </button>
+        <a id="navAskButton" class="button button-primary" href="#chatbot">
+          Ask AI
+        </a>
+        <button id="mobileMenuButton" class="icon-button mobile-menu-button" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+          <i class="lucide lucide-menu" aria-hidden="true"></i>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+
+    <!-- =========================================================
+         HERO
+    ========================================================== -->
+    <section id="hero" class="section hero" aria-labelledby="hero-heading">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <p class="badge">
+            <i class="lucide lucide-sparkles" aria-hidden="true"></i>
+            <span>AI-Powered Health Knowledge</span>
+          </p>
+
+          <h1 id="hero-heading" class="hero-heading">
+            Medical answers, <em>grounded</em> in real sources.
+          </h1>
+
+          <p class="hero-subtext">
+            MedAI turns a curated medical knowledge base into clear, understandable answers —
+            every response points back to the documents it came from, so you always know where the information originated.
+          </p>
+
+          <div class="hero-actions">
+            <a id="heroAskButton" class="button button-primary button-large" href="#chatbot">
+              Ask a Question
+            </a>
+            <a class="button button-secondary button-large" href="#how-it-works">
+              How It Works
+            </a>
+          </div>
+
+          <p class="hero-microcopy">
+            <i class="lucide lucide-shield-check" aria-hidden="true"></i>
+            For educational purposes only — not a substitute for professional medical advice.
+          </p>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="ai-orb">
+            <div class="ai-orb-core"></div>
+            <div class="ai-orb-ring ai-orb-ring-1"></div>
+            <div class="ai-orb-ring ai-orb-ring-2"></div>
+          </div>
+
+          <div class="ai-status">
+            <span class="status-dot"></span>
+            <span class="status-text">Model active</span>
+          </div>
+
+          <div class="floating-card health-card health-card-1">
+            <i class="lucide lucide-heart-pulse" aria-hidden="true"></i>
+            <div class="health-card-text">
+              <span class="health-card-label">Vitals context</span>
+              <span class="health-card-value">Understood</span>
+            </div>
+          </div>
+
+          <div class="floating-card health-card health-card-2">
+            <i class="lucide lucide-file-text" aria-hidden="true"></i>
+            <div class="health-card-text">
+              <span class="health-card-label">Source</span>
+              <span class="health-card-value">medical-reference.pdf</span>
+            </div>
+          </div>
+
+          <div class="floating-card health-card health-card-3">
+            <i class="lucide lucide-brain-circuit" aria-hidden="true"></i>
+            <div class="health-card-text">
+              <span class="health-card-label">Reasoning</span>
+              <span class="health-card-value">Retrieval-augmented</span>
+            </div>
+          </div>
+
+          <div class="decorative-circle decorative-circle-1"></div>
+          <div class="decorative-circle decorative-circle-2"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         TRUST / STATS
+    ========================================================== -->
+    <section id="trust" class="section trust-section" aria-label="Product highlights">
+      <div class="container trust-grid">
+        <div class="trust-item">
+          <i class="lucide lucide-file-search" aria-hidden="true"></i>
+          <span class="trust-label">Document-grounded</span>
+        </div>
+        <div class="trust-item">
+          <i class="lucide lucide-link" aria-hidden="true"></i>
+          <span class="trust-label">Source-aware</span>
+        </div>
+        <div class="trust-item">
+          <i class="lucide lucide-cpu" aria-hidden="true"></i>
+          <span class="trust-label">AI-powered</span>
+        </div>
+        <div class="trust-item">
+          <i class="lucide lucide-clock" aria-hidden="true"></i>
+          <span class="trust-label">Available 24/7</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         CHATBOT
+    ========================================================== -->
+    <section id="chatbot" class="section chatbot-section" aria-labelledby="chatbot-heading">
+      <h2 id="chatbot-heading" class="visually-hidden">MedAI chat workspace</h2>
+
+      <div class="chat-layout container">
+
+        <!-- SIDEBAR -->
+        <aside id="chatSidebar" class="chat-sidebar">
+          <div class="sidebar-header">
+            <a class="sidebar-brand" href="#hero" aria-label="MedAI home">
+              <i class="lucide lucide-activity" aria-hidden="true"></i>
+              <span>MedAI</span>
+            </a>
+            <button id="sidebarCollapse" class="icon-button" type="button" aria-label="Collapse sidebar">
+              <i class="lucide lucide-panel-left-close" aria-hidden="true"></i>
+            </button>
+          </div>
+
+          <button id="newChatButton" class="button button-outline sidebar-new-chat" type="button">
+            <i class="lucide lucide-plus" aria-hidden="true"></i>
+            New Chat
+          </button>
+
+          <div class="sidebar-search">
+            <label class="visually-hidden" for="conversationSearch">Search conversations</label>
+            <i class="lucide lucide-search sidebar-search-icon" aria-hidden="true"></i>
+            <input
+              id="conversationSearch"
+              class="sidebar-search-input"
+              type="search"
+              name="conversationSearch"
+              placeholder="Search conversations..."
+              autocomplete="off"
+            />
+          </div>
+
+          <nav class="sidebar-history" aria-label="Conversation history">
+            <h3 class="sidebar-history-heading">Recent</h3>
+            <ul id="conversationList" class="conversation-list">
+              <li class="conversation-item conversation-item-active">
+                <button class="conversation-button" type="button">
+                  <i class="lucide lucide-message-circle" aria-hidden="true"></i>
+                  <span class="conversation-title">What are symptoms of diabetes?</span>
+                </button>
+              </li>
+              <li class="conversation-item">
+                <button class="conversation-button" type="button">
+                  <i class="lucide lucide-message-circle" aria-hidden="true"></i>
+                  <span class="conversation-title">How does hypertension occur?</span>
+                </button>
+              </li>
+              <li class="conversation-item">
+                <button class="conversation-button" type="button">
+                  <i class="lucide lucide-message-circle" aria-hidden="true"></i>
+                  <span class="conversation-title">Explain vitamin deficiency</span>
+                </button>
+              </li>
+              <li class="conversation-item">
+                <button class="conversation-button" type="button">
+                  <i class="lucide lucide-message-circle" aria-hidden="true"></i>
+                  <span class="conversation-title">What causes headaches?</span>
+                </button>
+              </li>
+            </ul>
+          </nav>
+
+          <div class="sidebar-footer">
+            <button id="settingsButton" class="sidebar-footer-button" type="button">
+              <i class="lucide lucide-settings" aria-hidden="true"></i>
+              Settings
+            </button>
+            <button id="profileButton" class="sidebar-footer-button sidebar-profile" type="button" aria-haspopup="true" aria-controls="profileMenu" aria-expanded="false">
+              <span class="profile-avatar" aria-hidden="true">U</span>
+              <span class="profile-name">Guest User</span>
+            </button>
+          </div>
+        </aside>
+
+        <!-- MAIN CHAT -->
+        <div class="chat-main">
+
+          <!-- CHAT HEADER -->
+          <header id="chatHeader" class="chat-header">
+            <div class="chat-header-left">
+              <button id="mobileSidebarButton" class="icon-button chat-header-mobile" type="button" aria-label="Open sidebar" aria-expanded="false" aria-controls="chatSidebar">
+                <i class="lucide lucide-panel-left" aria-hidden="true"></i>
+              </button>
+              <div class="chat-header-avatar" aria-hidden="true">
+                <i class="lucide lucide-bot"></i>
+              </div>
+              <div class="chat-header-info">
+                <span class="chat-header-name">MedAI Assistant</span>
+                <span id="chatStatus" class="chat-header-status">
+                  <span class="status-dot" aria-hidden="true"></span>
+                  Ready to help
+                </span>
+              </div>
+            </div>
+            <div class="chat-header-actions">
+              <button class="button button-ghost" type="button">
+                <i class="lucide lucide-plus" aria-hidden="true"></i>
+                New chat
+              </button>
+              <button id="clearChatButton" class="button button-ghost" type="button">
+                <i class="lucide lucide-trash-2" aria-hidden="true"></i>
+                Clear chat
+              </button>
+            </div>
+          </header>
+
+          <!-- WELCOME SCREEN -->
+          <div id="welcomeScreen" class="welcome-screen">
+            <div class="welcome-icon" aria-hidden="true">
+              <i class="lucide lucide-stethoscope"></i>
+            </div>
+            <h2 class="welcome-heading">Ask MedAI a health question</h2>
+            <p class="welcome-description">
+              MedAI searches a curated medical knowledge base and generates an educational answer with cited sources.
+            </p>
+
+            <p class="medical-disclaimer welcome-disclaimer">
+              <i class="lucide lucide-info" aria-hidden="true"></i>
+              This AI provides general health information for educational purposes and does not replace professional medical advice, diagnosis, or treatment.
+            </p>
+
+            <div id="quickQuestions" class="quick-questions">
+              <button class="quick-question" type="button" data-question="What are common symptoms of diabetes?">
+                <i class="lucide lucide-droplet" aria-hidden="true"></i>
+                <span>What are common symptoms of diabetes?</span>
+              </button>
+              <button class="quick-question" type="button" data-question="What causes frequent headaches?">
+                <i class="lucide lucide-brain" aria-hidden="true"></i>
+                <span>What causes frequent headaches?</span>
+              </button>
+              <button class="quick-question" type="button" data-question="How can I improve my sleep?">
+                <i class="lucide lucide-moon" aria-hidden="true"></i>
+                <span>How can I improve my sleep?</span>
+              </button>
+              <button class="quick-question" type="button" data-question="What are common symptoms of hypertension?">
+                <i class="lucide lucide-heart-pulse" aria-hidden="true"></i>
+                <span>What are common symptoms of hypertension?</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- MESSAGES -->
+          <div id="chatMessages" class="chat-messages" role="log" aria-live="polite" aria-label="Conversation">
+
+            <!-- Sample user message -->
+            <div class="message message-user">
+              <div class="message-avatar" aria-hidden="true">U</div>
+              <div class="message-body">
+                <div class="message-meta">
+                  <span class="message-sender">You</span>
+                  <span class="message-time">10:24 AM</span>
+                </div>
+                <div class="message-content">
+                  <p>What are common symptoms of diabetes?</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sample AI message -->
+            <div class="message message-ai">
+              <div class="message-avatar" aria-hidden="true">
+                <i class="lucide lucide-bot"></i>
+              </div>
+              <div class="message-body">
+                <div class="message-meta">
+                  <span class="message-sender">MedAI Assistant</span>
+                  <span class="message-time">10:24 AM</span>
+                </div>
+                <div class="message-content">
+                  <p>
+                    Common symptoms associated with diabetes can include increased thirst, frequent urination,
+                    fatigue, blurred vision, and slow-healing wounds. Symptoms can vary between individuals and
+                    diabetes types, so a healthcare professional should evaluate any specific concerns.
+                  </p>
+                </div>
+
+                <div class="message-sources">
+                  <h3 class="source-list-heading">Sources</h3>
+                  <ul class="source-list">
+                    <li class="source-item">
+                      <i class="lucide lucide-file-text" aria-hidden="true"></i>
+                      <span class="source-title">medical-document.pdf</span>
+                    </li>
+                    <li class="source-item">
+                      <i class="lucide lucide-file-text" aria-hidden="true"></i>
+                      <span class="source-title">medical-reference.pdf</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- TYPING INDICATOR -->
+          <div id="typingIndicator" class="typing-indicator" hidden aria-live="polite">
+            <div class="message-avatar" aria-hidden="true">
+              <i class="lucide lucide-bot"></i>
+            </div>
+            <div class="typing-indicator-bubble">
+              <span class="typing-dot"></span>
+              <span class="typing-dot"></span>
+              <span class="typing-dot"></span>
+              <span class="typing-text">MedAI is thinking...</span>
+            </div>
+          </div>
+
+          <!-- EMERGENCY ALERT -->
+          <div id="emergencyAlert" class="emergency-alert" hidden role="alert">
+            <i class="lucide lucide-triangle-alert emergency-alert-icon" aria-hidden="true"></i>
+            <div class="emergency-alert-body">
+              <h3 class="emergency-alert-heading">This may be an emergency</h3>
+              <p class="emergency-alert-message">
+                If you are experiencing a medical emergency, please seek immediate care from a qualified healthcare professional or emergency service.
+              </p>
+            </div>
+            <button class="icon-button emergency-alert-close" type="button" aria-label="Dismiss emergency alert">
+              <i class="lucide lucide-x" aria-hidden="true"></i>
+            </button>
+          </div>
+
+          <!-- CHAT INPUT -->
+          <div class="chat-input-area">
+            <form class="chat-input-form" action="#" onsubmit="return false;">
+              <label class="visually-hidden" for="chatInput">Ask a medical question</label>
+              <textarea
+                id="chatInput"
+                class="chat-input"
+                name="chatInput"
+                rows="1"
+                maxlength="1000"
+                placeholder="Ask a medical question..."
+              ></textarea>
+
+              <div class="chat-input-controls">
+                <span id="characterCount" class="character-count">0 / 1000</span>
+                <button id="clearInputButton" class="icon-button" type="button" aria-label="Clear input">
+                  <i class="lucide lucide-eraser" aria-hidden="true"></i>
+                </button>
+                <button id="sendButton" class="button button-primary chat-send-button" type="submit">
+                  <i class="lucide lucide-send" aria-hidden="true"></i>
+                  <span class="visually-hidden">Send message</span>
+                </button>
+              </div>
+            </form>
+            <p class="chat-input-helper">
+              MedAI can make mistakes. Consider checking important information with a healthcare professional.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         FEATURES
+    ========================================================== -->
+    <section id="features" class="section features-section" aria-labelledby="features-heading">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Capabilities</p>
+          <h2 id="features-heading">Built for careful, cited answers</h2>
+        </div>
+
+        <div class="features-grid">
+          <article class="feature-card">
+            <div class="feature-icon" aria-hidden="true"><i class="lucide lucide-book-open-text"></i></div>
+            <h3 class="feature-title">Document-Based Q&amp;A</h3>
+            <p class="feature-description">Ask questions using the medical knowledge base.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon" aria-hidden="true"><i class="lucide lucide-link-2"></i></div>
+            <h3 class="feature-title">Source-Aware Answers</h3>
+            <p class="feature-description">Show supporting document information.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon" aria-hidden="true"><i class="lucide lucide-sparkles"></i></div>
+            <h3 class="feature-title">AI Assistance</h3>
+            <p class="feature-description">Get understandable educational responses.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon" aria-hidden="true"><i class="lucide lucide-history"></i></div>
+            <h3 class="feature-title">Conversation History</h3>
+            <p class="feature-description">Keep track of previous questions.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon" aria-hidden="true"><i class="lucide lucide-smartphone"></i></div>
+            <h3 class="feature-title">Responsive Experience</h3>
+            <p class="feature-description">Designed for desktop and mobile.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon" aria-hidden="true"><i class="lucide lucide-shield-check"></i></div>
+            <h3 class="feature-title">Safety-Focused</h3>
+            <p class="feature-description">Clearly communicates the limitations of AI medical information.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         HOW IT WORKS
+    ========================================================== -->
+    <section id="how-it-works" class="section how-it-works-section" aria-labelledby="how-it-works-heading">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Process</p>
+          <h2 id="how-it-works-heading">From question to cited answer</h2>
+          <p class="section-subtext">
+            User question → Medical knowledge base → Relevant document retrieval → AI generation → Answer + sources
+          </p>
+        </div>
+
+        <ol class="steps-grid">
+          <li class="step-card">
+            <span class="step-number">01</span>
+            <h3 class="step-title">Ask</h3>
+            <p class="step-description">Type a health question in plain language.</p>
+          </li>
+          <li class="step-card">
+            <span class="step-number">02</span>
+            <h3 class="step-title">Retrieve</h3>
+            <p class="step-description">Relevant passages are located within the medical knowledge base.</p>
+          </li>
+          <li class="step-card">
+            <span class="step-number">03</span>
+            <h3 class="step-title">Generate</h3>
+            <p class="step-description">An educational answer is generated from the retrieved material.</p>
+          </li>
+          <li class="step-card">
+            <span class="step-number">04</span>
+            <h3 class="step-title">Cite</h3>
+            <p class="step-description">Supporting sources are attached to the answer for reference.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SAFETY
+    ========================================================== -->
+    <section id="safety" class="section safety-section" aria-labelledby="safety-heading">
+      <div class="container safety-container">
+        <i class="lucide lucide-shield-alert safety-icon" aria-hidden="true"></i>
+        <h2 id="safety-heading">Understanding MedAI's limitations</h2>
+        <ul class="safety-list">
+          <li>MedAI is an AI system and can make mistakes or present incomplete information.</li>
+          <li>Answers are provided for educational purposes only.</li>
+          <li>MedAI is not a substitute for professional medical care.</li>
+          <li>Always consult a qualified healthcare professional for medical concerns.</li>
+          <li>In an emergency, seek immediate professional assistance.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         ABOUT
+    ========================================================== -->
+    <section id="about" class="section about-section" aria-labelledby="about-heading">
+      <div class="container about-grid">
+        <div class="about-content">
+          <p class="eyebrow">About MedAI</p>
+          <h2 id="about-heading">A document-grounded medical knowledge assistant</h2>
+          <p>
+            MedAI is designed to answer general health questions by retrieving relevant passages from a curated
+            medical knowledge base and generating an educational response from that material.
+          </p>
+          <p>
+            Because every answer is tied to source documents, you can review where the information came from
+            rather than relying on an unexplained response.
+          </p>
+          <p>
+            AI-generated answers can still be incomplete or imprecise. MedAI is intended to support learning and
+            understanding, not to diagnose conditions or replace guidance from a licensed healthcare professional.
+          </p>
+        </div>
+        <div class="about-visual" aria-hidden="true">
+          <div class="about-visual-card">
+            <i class="lucide lucide-database"></i>
+            <span>Medical knowledge base</span>
+          </div>
+          <div class="about-visual-arrow">
+            <i class="lucide lucide-arrow-down"></i>
+          </div>
+          <div class="about-visual-card">
+            <i class="lucide lucide-search-check"></i>
+            <span>Relevant retrieval</span>
+          </div>
+          <div class="about-visual-arrow">
+            <i class="lucide lucide-arrow-down"></i>
+          </div>
+          <div class="about-visual-card">
+            <i class="lucide lucide-message-square-text"></i>
+            <span>Cited answer</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         CTA
+    ========================================================== -->
+    <section id="cta" class="section cta-section" aria-labelledby="cta-heading">
+      <div class="container cta-container">
+        <h2 id="cta-heading">Have a medical question?</h2>
+        <p class="cta-subtext">Get a clear, source-backed educational answer in seconds.</p>
+        <a class="button button-primary button-large" href="#chatbot">
+          Ask MedAI
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================
+       FOOTER
+  ========================================================== -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a class="footer-logo" href="#hero" aria-label="MedAI home">
+          <i class="lucide lucide-activity" aria-hidden="true"></i>
+          <span>MedAI</span>
+        </a>
+        <p class="footer-description">
+          An AI-powered, document-grounded medical Q&amp;A assistant for general health education.
+        </p>
+      </div>
+
+      <nav class="footer-column" aria-label="Product">
+        <h3 class="footer-column-heading">Product</h3>
+        <ul>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#about">About</a></li>
+        </ul>
+      </nav>
+
+      <nav class="footer-column" aria-label="Legal">
+        <h3 class="footer-column-heading">Legal</h3>
+        <ul>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="container footer-bottom">
+      <p class="medical-disclaimer footer-disclaimer">
+        This AI provides general health information for educational purposes and does not replace professional medical advice, diagnosis, or treatment.
+      </p>
+      <p class="footer-copyright">&copy; 2026 MedAI. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- =========================================================
+       SETTINGS MODAL (hidden — controlled by JavaScript later)
+  ========================================================== -->
+  <div id="settingsModal" class="settings-modal" hidden role="dialog" aria-modal="true" aria-labelledby="settingsModalHeading">
+    <div class="settings-modal-content">
+      <div class="settings-modal-header">
+        <h2 id="settingsModalHeading">Settings</h2>
+        <button id="settingsModalClose" class="icon-button" type="button" aria-label="Close settings">
+          <i class="lucide lucide-x" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <div class="settings-modal-body">
+        <fieldset class="settings-group">
+          <legend>Appearance</legend>
+          <div class="settings-option">
+            <input type="radio" id="themeLight" name="appearance" value="light" />
+            <label for="themeLight">Light</label>
+          </div>
+          <div class="settings-option">
+            <input type="radio" id="themeDark" name="appearance" value="dark" />
+            <label for="themeDark">Dark</label>
+          </div>
+          <div class="settings-option">
+            <input type="radio" id="themeSystem" name="appearance" value="system" checked />
+            <label for="themeSystem">System</label>
+          </div>
+        </fieldset>
+
+        <fieldset class="settings-group">
+          <legend>Chat preferences</legend>
+          <div class="settings-option settings-option-toggle">
+            <label for="enterToSend">Enter to send</label>
+            <input type="checkbox" id="enterToSend" name="enterToSend" checked />
+          </div>
+          <div class="settings-option settings-option-toggle">
+            <label for="showSources">Show sources</label>
+            <input type="checkbox" id="showSources" name="showSources" checked />
+          </div>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       PROFILE MENU (hidden — controlled by JavaScript later)
+  ========================================================== -->
+  <div id="profileMenu" class="profile-menu" hidden role="menu" aria-label="Profile menu">
+    <button class="profile-menu-item" type="button" role="menuitem">
+      <i class="lucide lucide-user" aria-hidden="true"></i>
+      Profile
+    </button>
+    <button class="profile-menu-item" type="button" role="menuitem">
+      <i class="lucide lucide-settings" aria-hidden="true"></i>
+      Settings
+    </button>
+    <button class="profile-menu-item" type="button" role="menuitem">
+      <i class="lucide lucide-log-out" aria-hidden="true"></i>
+      Logout
+    </button>
+  </div>
+
+  <!-- =========================================================
+       NOTIFICATIONS
+  ========================================================== -->
+  <div id="notificationContainer" class="notification-container" aria-live="polite"></div>
+
+</body>
+</html>
